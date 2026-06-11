@@ -85,7 +85,11 @@
       "name": "firecrawl",
       "description": "Turn any website into clean, LLM-ready markdown or structured data. Search, scrape, map, crawl, and extract live web data via the bundled hosted Firecrawl MCP server — browser-OAuth sign-in, no API key to paste. Automatic JS rendering, anti-bot handling, and proxy rotation; CLI skills available as a fallback.",
       "category": "development",
-      "source": { "type": "local", "path": "./external_plugins/firecrawl" },
+      "source": {
+        "source": "url",
+        "url": "https://github.com/rakshith48/firecrawl-grok-plugin.git",
+        "sha": "a51843786901b9efe6235608f36413dda49854d3"
+      },
       "homepage": "https://github.com/rakshith48/firecrawl-grok-plugin",
       "keywords": ["firecrawl", "scrape", "crawl", "web search", "scrape website", "markdown from url", "extract"],
       "domains": ["firecrawl.dev", "docs.firecrawl.dev"]
