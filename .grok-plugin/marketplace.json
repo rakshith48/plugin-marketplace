@@ -80,6 +80,15 @@
       "homepage": "https://www.mongodb.com/docs/mcp-server/overview/",
       "keywords": ["mongodb", "mongo", "mongosh", "mongodb atlas", "mongoose"],
       "domains": ["mongodb.com", "cloud.mongodb.com"]
+    },
+    {
+      "name": "firecrawl",
+      "description": "Turn any website into clean, LLM-ready markdown or structured data. Search, scrape, map, crawl, and extract live web data — via the Firecrawl CLI skills or the bundled Firecrawl MCP server. Automatic JS rendering, anti-bot handling, and proxy rotation.",
+      "category": "development",
+      "source": { "type": "local", "path": "./external_plugins/firecrawl" },
+      "homepage": "https://github.com/firecrawl/firecrawl-claude-plugin",
+      "keywords": ["firecrawl", "scrape", "crawl", "web search", "scrape website", "markdown from url", "extract"],
+      "domains": ["firecrawl.dev", "docs.firecrawl.dev"]
     }
   ]
 }
