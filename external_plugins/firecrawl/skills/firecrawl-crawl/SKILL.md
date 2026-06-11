@@ -3,11 +3,17 @@ name: firecrawl-crawl
 description: |
   Bulk extract content from an entire website or site section. Use this skill when the user wants to crawl a site, extract all pages from a docs section, bulk-scrape multiple pages following links, or says "crawl", "get all the pages", "extract everything under /docs", "bulk extract", or needs content from many pages on the same site. Handles depth limits, path filtering, and concurrent extraction.
 allowed-tools:
+  - mcp__firecrawl__firecrawl_crawl
+  - mcp__firecrawl__firecrawl_check_crawl_status
   - Bash(firecrawl *)
   - Bash(npx firecrawl *)
 ---
 
 # firecrawl crawl
+
+## Via the Firecrawl MCP (preferred)
+
+This plugin bundles the Firecrawl MCP server. When it's connected, prefer the native **`firecrawl_crawl`** tool over the CLI (and **`firecrawl_check_crawl_status`** to poll an async crawl) — it needs no local install and authenticates through the plugin's one-time browser sign-in. The `firecrawl` CLI commands below are the fallback for when the MCP isn't connected.
 
 Bulk extract content from a website. Crawls pages following links up to a depth/limit.
 

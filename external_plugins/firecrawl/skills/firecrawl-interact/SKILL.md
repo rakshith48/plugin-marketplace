@@ -3,11 +3,17 @@ name: firecrawl-interact
 description: |
   Control and interact with a live browser session on any scraped page — click buttons, fill forms, navigate flows, and extract data using natural language prompts or code. Use when the user needs to interact with a webpage beyond simple scraping: logging into a site, submitting forms, clicking through pagination, handling infinite scroll, navigating multi-step checkout or wizard flows, or when a regular scrape failed because content is behind JavaScript interaction. Also useful for authenticated scraping via profiles. Triggers on "interact", "click", "fill out the form", "log in to", "sign in", "submit", "paginated", "next page", "infinite scroll", "interact with the page", "navigate to", "open a session", or "scrape failed".
 allowed-tools:
+  - mcp__firecrawl__firecrawl_interact
+  - mcp__firecrawl__firecrawl_interact_stop
   - Bash(firecrawl *)
   - Bash(npx firecrawl *)
 ---
 
 # firecrawl interact
+
+## Via the Firecrawl MCP (preferred)
+
+This plugin bundles the Firecrawl MCP server. When it's connected, prefer the native **`firecrawl_interact`** tool over the CLI (and **`firecrawl_interact_stop`** to end a session) — it needs no local install and authenticates through the plugin's one-time browser sign-in. The `firecrawl` CLI commands below are the fallback for when the MCP isn't connected.
 
 Interact with scraped pages in a live browser session. Scrape a page first, then use natural language prompts or code to click, fill forms, navigate, and extract data.
 

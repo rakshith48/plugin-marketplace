@@ -120,7 +120,7 @@
         "mcpServers": [
           {
             "name": "firecrawl",
-            "description": "stdio"
+            "description": "http"
           }
         ],
         "skills": [
@@ -147,10 +147,6 @@
           {
             "name": "firecrawl-map",
             "description": "Discover and list all URLs on a website, with optional search filtering. Use this skill when the user wants to find a s…"
-          },
-          {
-            "name": "firecrawl-mcp",
-            "description": "Use the Firecrawl MCP server's native tools (firecrawl_search, firecrawl_scrape, firecrawl_map, firecrawl_crawl, firecr…"
           },
           {
             "name": "firecrawl-monitor",

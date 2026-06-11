@@ -3,11 +3,46 @@ name: firecrawl
 description: |
   Search, scrape, and interact with the web via the Firecrawl CLI. Use this skill whenever the user wants to search the web, find articles, research a topic, look something up online, scrape a webpage, grab content from a URL, get data from a website, crawl documentation, download a site, or interact with pages that need clicks or logins. Also use when they say "fetch this page", "pull the content from", "get the page at https://", or reference external websites. This provides real-time web search with full page content and interact capabilities — beyond what Claude can do natively with built-in tools. Do NOT trigger for local file operations, git commands, deployments, or code editing tasks.
 allowed-tools:
+  - mcp__firecrawl__firecrawl_scrape
+  - mcp__firecrawl__firecrawl_search
+  - mcp__firecrawl__firecrawl_search_feedback
+  - mcp__firecrawl__firecrawl_map
+  - mcp__firecrawl__firecrawl_crawl
+  - mcp__firecrawl__firecrawl_check_crawl_status
+  - mcp__firecrawl__firecrawl_extract
+  - mcp__firecrawl__firecrawl_agent
+  - mcp__firecrawl__firecrawl_agent_status
+  - mcp__firecrawl__firecrawl_interact
+  - mcp__firecrawl__firecrawl_interact_stop
+  - mcp__firecrawl__firecrawl_monitor_create
+  - mcp__firecrawl__firecrawl_monitor_list
+  - mcp__firecrawl__firecrawl_monitor_get
+  - mcp__firecrawl__firecrawl_monitor_update
+  - mcp__firecrawl__firecrawl_monitor_delete
+  - mcp__firecrawl__firecrawl_monitor_run
+  - mcp__firecrawl__firecrawl_monitor_checks
+  - mcp__firecrawl__firecrawl_monitor_check
   - Bash(firecrawl *)
   - Bash(npx firecrawl *)
 ---
 
 # Firecrawl CLI
+
+## Tools: MCP first, CLI fallback
+
+This plugin bundles Firecrawl's hosted **MCP server**. When it's connected, prefer the native `firecrawl_*` MCP tools — they need no local install and authenticate through the plugin's one-time browser sign-in:
+
+| Action | MCP tool |
+| --- | --- |
+| Scrape a URL | `firecrawl_scrape` |
+| Web search | `firecrawl_search` (+ `firecrawl_search_feedback`) |
+| Discover URLs on a site | `firecrawl_map` |
+| Bulk-crawl a site | `firecrawl_crawl` (+ `firecrawl_check_crawl_status`) |
+| Structured extraction | `firecrawl_extract` / `firecrawl_agent` (+ `firecrawl_agent_status`) |
+| Interact with a page | `firecrawl_interact` (+ `firecrawl_interact_stop`) |
+| Watch pages for changes | `firecrawl_monitor_*` |
+
+The `firecrawl` **CLI** (commands below) is the fallback when the MCP isn't connected, and is **required** for local-filesystem operations the hosted MCP can't do: **download** (save a site to files) and **parse** (read a local PDF/DOCX/etc.).
 
 Search, scrape, and interact with the web. Returns clean markdown optimized for LLM context windows.
 
@@ -104,17 +139,17 @@ Subcommands: `create | list | get | update | delete | run | checks | check`.
 
 ```bash
 # create from flags
-firecrawl monitor create --name "Blog" --schedule "every 5 minutes" \
+firecrawl monitor create --name "Blog" --schedule "every 15 minutes" \
   --goal "Alert when a new blog post is published." \
   --page https://example.com/blog --email alerts@example.com
 
 # multiple pages
-firecrawl monitor create --name "Product pages" --schedule "every 5 minutes" \
+firecrawl monitor create --name "Product pages" --schedule "every 15 minutes" \
   --goal "Alert when pricing, docs, or changelog content changes." \
   --scrape-urls https://example.com/pricing,https://example.com/docs,https://example.com/changelog
 
 # webhook notifications
-firecrawl monitor create --name "Docs webhook" --schedule "every 5 minutes" \
+firecrawl monitor create --name "Docs webhook" --schedule "every 15 minutes" \
   --goal "Alert when docs content changes." \
   --page https://example.com/docs \
   --webhook-url https://example.com/webhook \
@@ -132,7 +167,7 @@ firecrawl monitor update <monitorId> --state paused
 firecrawl monitor delete <monitorId>
 ```
 
-Schedules accept cron (`--cron "*/5 * * * *"`) or natural language (`--schedule "every 5 minutes"`). Minimum interval is 5 minutes. Targets are `--page <url>` for one page, `--scrape-urls a,b,c` for multiple scrape URLs, or `--crawl-url <url>` for a whole-site crawl each check. Use `--goal` for flag-based monitor creation, or include `"goal": "..."` in JSON payloads. Note: `--state` (not `--status`) sets active/paused; `--page-status` (not `--status`) filters page results on `check` — avoids collision with the global `--status` flag. Monitoring is not available for zero-data-retention teams.
+Schedules accept cron (`--cron "*/15 * * * *"`) or natural language (`--schedule "every 15 minutes"`). Minimum interval is 15 minutes. Targets are `--page <url>` for one page, `--scrape-urls a,b,c` for multiple scrape URLs, or `--crawl-url <url>` for a whole-site crawl each check. Use `--goal` for flag-based monitor creation, or include `"goal": "..."` in JSON payloads. Note: `--state` (not `--status`) sets active/paused; `--page-status` (not `--status`) filters page results on `check` — avoids collision with the global `--status` flag. Monitoring is not available for zero-data-retention teams.
 
 **JSON-mode change tracking:** By default monitors diff each page's markdown and you get a unified text diff back. When you care about **specific structured fields** (price, headline, in-stock flag, items in a list) instead of the whole page, add a `changeTracking` format with `modes: ["json"]` and a JSON schema to the target's `scrapeOptions.formats`. The flag-based form doesn't cover this — pass a JSON body via file or stdin:
 

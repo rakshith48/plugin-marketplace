@@ -3,11 +3,16 @@ name: firecrawl-scrape
 description: |
   Extract clean markdown from any URL, including JavaScript-rendered SPAs. Use this skill whenever the user provides a URL and wants its content, says "scrape", "grab", "fetch", "pull", "get the page", "extract from this URL", or "read this webpage". Handles JS-rendered pages, multiple concurrent URLs, and returns LLM-optimized markdown. Use this instead of WebFetch for any webpage content extraction.
 allowed-tools:
+  - mcp__firecrawl__firecrawl_scrape
   - Bash(firecrawl *)
   - Bash(npx firecrawl *)
 ---
 
 # firecrawl scrape
+
+## Via the Firecrawl MCP (preferred)
+
+This plugin bundles the Firecrawl MCP server. When it's connected, prefer the native **`firecrawl_scrape`** tool over the CLI — it needs no local install and authenticates through the plugin's one-time browser sign-in. Pass the same capabilities described below (formats, JSON extraction with a schema, `waitFor`, proxy/stealth) as tool arguments. The `firecrawl` CLI commands below are the fallback for when the MCP isn't connected.
 
 Scrape one or more URLs. Returns clean, LLM-optimized markdown. Multiple URLs are scraped concurrently.
 

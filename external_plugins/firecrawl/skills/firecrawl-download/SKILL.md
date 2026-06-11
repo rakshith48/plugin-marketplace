@@ -9,6 +9,10 @@ allowed-tools:
 
 # firecrawl download
 
+## MCP note
+
+This is a **local-filesystem** operation — it saves a site as files on your machine — so it runs through the `firecrawl` CLI rather than the bundled (hosted) Firecrawl MCP, which cannot read or write local files. Install the CLI if you haven't: `npm install -g firecrawl-cli` (see the `firecrawl-cli` skill). For fetching content into Claude's context instead of disk, use the MCP-backed `firecrawl-scrape` / `firecrawl-crawl` skills.
+
 > **Experimental.** Convenience command that combines `map` + `scrape` to save an entire site as local files.
 
 Maps the site first to discover pages, then scrapes each one into nested directories under `.firecrawl/`. All scrape options work with download. Always pass `-y` to skip the confirmation prompt.

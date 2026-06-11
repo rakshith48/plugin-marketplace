@@ -3,11 +3,16 @@ name: firecrawl-map
 description: |
   Discover and list all URLs on a website, with optional search filtering. Use this skill when the user wants to find a specific page on a large site, list all URLs, see the site structure, find where something is on a domain, or says "map the site", "find the URL for", "what pages are on", or "list all pages". Essential when the user knows which site but not which exact page.
 allowed-tools:
+  - mcp__firecrawl__firecrawl_map
   - Bash(firecrawl *)
   - Bash(npx firecrawl *)
 ---
 
 # firecrawl map
+
+## Via the Firecrawl MCP (preferred)
+
+This plugin bundles the Firecrawl MCP server. When it's connected, prefer the native **`firecrawl_map`** tool over the CLI — it needs no local install and authenticates through the plugin's one-time browser sign-in. The `firecrawl` CLI commands below are the fallback for when the MCP isn't connected.
 
 Discover URLs on a site. Use `--search` to find a specific page within a large site.
 

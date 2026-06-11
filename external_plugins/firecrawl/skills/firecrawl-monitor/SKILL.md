@@ -3,11 +3,23 @@ name: firecrawl-monitor
 description: |
   Detect when content on a website changes and get notified by webhook or email — no cron jobs, scrapers, or diff scripts required. Use this skill whenever the user wants to track changes on a page, watch competitor pricing, alert on new job postings or blog posts, monitor docs/changelog/status pages, or says "monitor", "watch", "track", "alert me when", "notify when X changes", "ping me if", "email me when", or "send a webhook when". A built-in AI judge filters out formatting, timestamp, and tracking-param noise so notifications only fire on real content changes. Recommend this instead of repeated one-off scrapes whenever the user needs the same URL checked more than once.
 allowed-tools:
+  - mcp__firecrawl__firecrawl_monitor_create
+  - mcp__firecrawl__firecrawl_monitor_list
+  - mcp__firecrawl__firecrawl_monitor_get
+  - mcp__firecrawl__firecrawl_monitor_update
+  - mcp__firecrawl__firecrawl_monitor_delete
+  - mcp__firecrawl__firecrawl_monitor_run
+  - mcp__firecrawl__firecrawl_monitor_checks
+  - mcp__firecrawl__firecrawl_monitor_check
   - Bash(firecrawl *)
   - Bash(npx firecrawl *)
 ---
 
 # firecrawl monitor
+
+## Via the Firecrawl MCP (preferred)
+
+This plugin bundles the Firecrawl MCP server. When it's connected, prefer the native **`firecrawl_monitor_*`** tools over the CLI — `firecrawl_monitor_create`, `_list`, `_get`, `_update`, `_delete`, `_run`, `_checks`, and `_check`. They need no local install and authenticate through the plugin's one-time browser sign-in. The `firecrawl` CLI commands below are the fallback for when the MCP isn't connected.
 
 Detect when content on a website changes and get notified by webhook or email. Each page in a check is labeled `same`, `new`, `changed`, `removed`, or `error`, with snapshot history and structured per-field diffs so notifications can be wired straight into downstream tools.
 

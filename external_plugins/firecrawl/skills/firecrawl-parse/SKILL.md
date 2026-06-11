@@ -9,6 +9,10 @@ allowed-tools:
 
 # firecrawl parse
 
+## MCP note
+
+This is a **local-filesystem** operation — it reads a file (PDF, DOCX, XLSX, etc.) on your machine — so it runs through the `firecrawl` CLI rather than the bundled (hosted) Firecrawl MCP, which cannot access local files. Install the CLI if you haven't: `npm install -g firecrawl-cli` (see the `firecrawl-cli` skill). To parse a document at a URL instead, use the MCP-backed `firecrawl-scrape` skill.
+
 Turn a local document into clean markdown on disk. Supports **PDF, DOCX, DOC, ODT, RTF, XLSX, XLS, HTML/HTM/XHTML**.
 
 ## When to use

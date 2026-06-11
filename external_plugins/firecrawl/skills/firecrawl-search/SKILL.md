@@ -3,11 +3,17 @@ name: firecrawl-search
 description: |
   Web search with full page content extraction. Use this skill whenever the user asks to search the web, find articles, research a topic, look something up, find recent news, discover sources, or says "search for", "find me", "look up", "what are people saying about", or "find articles about". Returns real search results with optional full-page markdown — not just snippets. Provides capabilities beyond Claude's built-in WebSearch.
 allowed-tools:
+  - mcp__firecrawl__firecrawl_search
+  - mcp__firecrawl__firecrawl_search_feedback
   - Bash(firecrawl *)
   - Bash(npx firecrawl *)
 ---
 
 # firecrawl search
+
+## Via the Firecrawl MCP (preferred)
+
+This plugin bundles the Firecrawl MCP server. When it's connected, prefer the native **`firecrawl_search`** tool over the CLI (and **`firecrawl_search_feedback`** to report result quality) — it needs no local install and authenticates through the plugin's one-time browser sign-in. The `firecrawl` CLI commands below are the fallback for when the MCP isn't connected.
 
 Web search with optional content scraping. Returns search results as JSON, optionally with full page content.
 
