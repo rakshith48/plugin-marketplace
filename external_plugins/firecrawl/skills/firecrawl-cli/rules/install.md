@@ -17,6 +17,8 @@ npx -y firecrawl-cli@1.16.2 init -y --browser
 
 This installs `firecrawl-cli` globally, authenticates via browser, and installs core, build, and workflow skills.
 
+> **Scope note:** the "core / build / workflow" skill groups (e.g. `firecrawl-build`, `firecrawl-workflows`) are installed *globally by the CLI itself* across your detected editors — they are **not** bundled in this marketplace plugin. This plugin ships only the skills listed in its manifest (`.claude-plugin/plugin.json`): `firecrawl`, `firecrawl-agent`, `firecrawl-crawl`, `firecrawl-download`, `firecrawl-interact`, `firecrawl-map`, `firecrawl-monitor`, `firecrawl-parse`, `firecrawl-scrape`, `firecrawl-search`, plus the bundled MCP server. Install the CLI only if you want the additional global skill groups or the local-file fallback.
+
 This setup is safe to re-run when the CLI is missing, stale, or only partially configured.
 
 If `firecrawl` is already installed and you want to update it first:

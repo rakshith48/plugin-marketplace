@@ -44,22 +44,22 @@ The `firecrawl-cli` and `firecrawl-parse` skills use the CLI when present. **Get
 Once installed, Claude Code automatically uses Firecrawl's MCP tools for web tasks — no extra setup. Just ask naturally:
 
 **Search the web:**
-```
+```text
 Search for "best practices for React testing" and compile the key recommendations
 ```
 
 **Scrape a page:**
-```
+```text
 Scrape https://docs.firecrawl.dev/introduction and summarize the key points
 ```
 
 **Discover site structure:**
-```
+```text
 Map all URLs on https://firecrawl.dev
 ```
 
 **Research a topic:**
-```
+```text
 Research the latest developments in AI agents and give me a summary
 ```
 
@@ -79,7 +79,7 @@ By default the plugin uses the bundled hosted MCP. The Firecrawl CLI is only nee
 
 Results are saved to a `.firecrawl/` directory in your project to keep Claude Code's context window clean:
 
-```
+```text
 .firecrawl/search-react_server_components.json
 .firecrawl/docs.github.com-actions-overview.md
 .firecrawl/firecrawl.dev.md
